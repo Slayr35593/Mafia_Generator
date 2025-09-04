@@ -67,9 +67,10 @@ while len(roles) < player_num:
 random.shuffle(roles)
 player_roles = dict(zip(players, roles))
 
-#print("All Roles assinged!")
-#for player, role in player_roles.items():
-#    print(f"{player} is {role}")
+
+def GmSheet():
+    for player, role in player_roles.items():
+        print(f"{player} is {role}")
 
 print("\nAll roles assigned!\n")
 for player, role in player_roles.items():
@@ -81,3 +82,10 @@ for player, role in player_roles.items():
     Clr_terminal()
 
 print("Good luck, and have fun!")
+
+os.system('pause')
+Clr_terminal()
+
+print("Welcome GM! Here is the roles sheet!\n")
+GmSheet()
+
