@@ -1,0 +1,48 @@
+import random
+
+#GLOBAL
+Maf_Ratio = 4
+
+Special_Roles = {
+    5: ["Detective"],
+    6: ["Doctor"],
+    7: ["Jester"],
+    9: ["Vigilante"],
+    13: ["Serial Killer"],
+}
+
+while True:
+    try:
+        player_num = int(input("Welcome to Mafia! Enter a player count between 5-30 players! "))
+        if 5 <= player_num <= 30:
+            break
+        else:
+            print("Enter valid number between 5-30 players")
+    except ValueError:
+        print("Not a valid number, try again!")
+
+players = []
+for i in range(player_num):
+    name = input(f"Enter name for player {i+1}: ")
+    players.append(name)
+
+
+roles = []
+
+mafia_count = max(1, player_num // Maf_Ratio)
+roles.extend(["Mafia"] * mafia_count)
+
+for count, role_list in Special_Roles.items():
+    if player_num >= count:
+        roles.extend(role_list)
+
+while len(roles) < player_num:
+    roles.append("Innocent")
+
+
+random.shuffle(roles)
+player_roles = dict(zip(players, roles))
+
+print("All Roles assinged!")
+for player, role in player_roles.items():
+    print(f"{player} is {role}")
