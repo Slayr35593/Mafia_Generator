@@ -1,7 +1,18 @@
 import random
+import os
 
 #GLOBAL
 Maf_Ratio = 4
+
+def Clr_terminal():
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
+
+
+
+
 
 Special_Roles = {
     5: ["Detective"],
@@ -43,6 +54,17 @@ while len(roles) < player_num:
 random.shuffle(roles)
 player_roles = dict(zip(players, roles))
 
-print("All Roles assinged!")
+#print("All Roles assinged!")
+#for player, role in player_roles.items():
+#    print(f"{player} is {role}")
+
+print("\nAll roles assigned!\n")
 for player, role in player_roles.items():
-    print(f"{player} is {role}")
+    Clr_terminal()
+    print(f"{player} is... (press any key to reveal)")
+    os.system('pause')
+    print(role)
+    os.system('pause')
+    Clr_terminal()
+
+print("Good luck, and have fun!")
