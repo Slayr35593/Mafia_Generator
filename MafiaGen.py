@@ -2,9 +2,9 @@ import random
 import os
 
 #To Do:
-#Impliment twin system
-#GM control screen
-#Reprint player list if confusion
+#
+#
+#
 #
 #
 #
@@ -18,19 +18,6 @@ def Clr_terminal():
         os.system('cls')
     else:
         os.system('clear')
-while True:
-    try:
-        If_Twins = str(input("Do you want to play with the TWINS role? Y/N?     "))
-        if If_Twins == ("N"):
-            Twins_YN = False
-            break
-        elif If_Twins == ("Y"):
-            Twins_YN = True
-            break
-        else:
-            print("Invalid Input")
-    except:
-        print("Invalid Input")
 
 
 Clr_terminal()
@@ -54,6 +41,21 @@ while True:
     except ValueError:
         print("Not a valid number, try again!")
 
+while True:
+    if player_num >=7:
+        try:
+            If_Twins = str(input("Do you want to play with the TWINS role? Y/N?     "))
+            if If_Twins == ("N"):
+                Twins_YN = int(0)
+                break
+            elif If_Twins == ("Y"):
+                Twins_YN = int(1)
+                break
+            else:
+                print("Invalid Input")
+        except:
+            print("Invalid Input")
+
 players = []
 for i in range(player_num):
     name = input(f"Enter name for player {i+1}: ")
@@ -64,6 +66,9 @@ roles = []
 
 mafia_count = max(1, player_num // Maf_Ratio)
 roles.extend(["Mafia"] * mafia_count)
+
+if Twins_YN == 1:
+    roles.extend(["Twins"] * 2)
 
 for count, role_list in Special_Roles.items():
     if player_num >= count:
@@ -117,3 +122,4 @@ while True:
     except ValueError:
         Clr_terminal()
         print("Error! Invalid Value!")
+
