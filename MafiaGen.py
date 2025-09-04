@@ -9,9 +9,22 @@ def Clr_terminal():
         os.system('cls')
     else:
         os.system('clear')
+while True:
+    try:
+        If_Twins = str(input("Do you want to play with the TWINS role? Y/N?     "))
+        if If_Twins == ("N"):
+            Twins_YN = False
+            break
+        elif If_Twins == ("Y"):
+            Twins_YN = True
+            break
+        else:
+            print("Invalid Input")
+    except:
+        print("Invalid Input")
 
 
-
+Clr_terminal()
 
 
 Special_Roles = {
