@@ -12,7 +12,7 @@ import os
 # 
 # GLOBAL
 Maf_Ratio = 4
-
+Twins_YN = 0
 def Clr_terminal():
     if os.name == 'nt':
         os.system('cls')
@@ -41,8 +41,8 @@ while True:
     except ValueError:
         print("Not a valid number, try again!")
 
-while True:
-    if player_num >=7:
+if player_num >=7:
+    while True:
         try:
             If_Twins = str(input("Do you want to play with the TWINS role? Y/N?     "))
             if If_Twins == ("N"):
