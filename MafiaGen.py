@@ -101,18 +101,29 @@ print("Good luck, and have fun!")
 os.system('pause')
 Clr_terminal()
 
+def rolesheet():
+    print("How the game works:\n\nPhases:\n\nDay phase: All players discuss and then vote on who they suspect is either Mafia or Evil.\nThe voted palyer is killed.\n\nNight phase:\nSpecial roles (Mafia, Detective, Doctor, ect) secretly act. The host is tasked with revealing what\nhappened in the morning.\n\n\nRoles and what they do:\n\n\nMafia: Secretly chooses who to kill at night!\n\nDetective: Investigates someone each night. if they tried to kill someone the detective finds clues!\n\nDoctor: Protects someone from death each night, they can attempt to protect themselves ONCE.\n\nSerial Killer: Must kill someone every two nights\n\nJester: Get voted out by the town to win the whole game!\n\nVigilante: A player of the town team that can kill once at night. If the player chosen wasn't evil they will die of guilt the next night.\n\nTwins: two players, if one dies the other dies with them.")
+    os.system('pause')
+
+
 
 while True:
     try:
-        choice = input("Welcome GM! Here is your operation panel!\n\nTo print the whole player list Enter 1\nTo Reveal all players Enter 2\nTo quit the program enter QUIT\n\nEnter command:  ")
+        Clr_terminal()
+        choice = input("Welcome GM! Here is your operation panel!\n\nTo print the whole player list Enter 1\nTo Reveal all players Enter 2\nTo display rules & roles Enter 3\nTo quit the program enter QUIT\n\nEnter command:  ")
         if choice == "1":
             print("\n")
             GmSheet()
             os.system('pause')
             Clr_terminal()
         if choice == "2":
+            Clr_terminal()
             print("\n")
             Reveal()
+            Clr_terminal()
+        if choice == "3":
+            Clr_terminal()
+            rolesheet()
             Clr_terminal()
         if choice == "QUIT":
             Clr_terminal()
