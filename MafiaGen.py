@@ -1,6 +1,6 @@
 import random
 import os
-
+import time
 #To Do:
 #
 #
@@ -11,6 +11,8 @@ import os
 # 
 # 
 # GLOBAL
+
+Rig_mode = 0
 Maf_Ratio = 4
 Twins_YN = 0
 def Clr_terminal():
@@ -36,6 +38,11 @@ while True:
         player_num = int(input("Welcome to Mafia! Enter a player count between 5-30 players! "))
         if 5 <= player_num <= 30:
             break
+        if player_num == 1124:
+            print("Entering ALT-Mode...")
+            time.sleep(1)
+            Rig_mode = 1
+            Clr_terminal()
         else:
             print("Enter valid number between 5-30 players")
     except ValueError:
@@ -62,24 +69,43 @@ for i in range(player_num):
     players.append(name)
 
 
-roles = []
-
-mafia_count = max(1, player_num // Maf_Ratio)
-roles.extend(["Mafia"] * mafia_count)
-
-if Twins_YN == 1:
-    roles.extend(["Twins"] * 2)
-
-for count, role_list in Special_Roles.items():
-    if player_num >= count:
-        roles.extend(role_list)
-
-while len(roles) < player_num:
-    roles.append("Innocent")
-
-
-random.shuffle(roles)
-player_roles = dict(zip(players, roles))
+if Rig_mode == 1:
+    password = input("GM assigned Alt-Mode detected. Enter password to continue: ")
+    if password != "sorry_guys":
+        print("Invalid password. Mode disabled.")
+        Rig_mode = 0
+        roles = []
+        mafia_count = max(1, player_num // Maf_Ratio)
+        roles.extend(["Mafia"] * mafia_count)
+        if Twins_YN == 1:
+            roles.extend(["Twins"] * 2)
+        for count, role_list in Special_Roles.items():
+            if player_num >= count:
+                roles.extend(role_list)
+        while len(roles) < player_num:
+            roles.append("Innocent")
+        random.shuffle(roles)
+        player_roles = dict(zip(players, roles))
+    else:
+        roles = []
+        print("\nRIG MODE ENABLED: Enter a role for each player.")
+        for name in players:
+            role = input(f"Enter role for {name}: ")
+            roles.append(role)
+        player_roles = dict(zip(players, roles))
+else:
+    roles = []
+    mafia_count = max(1, player_num // Maf_Ratio)
+    roles.extend(["Mafia"] * mafia_count)
+    if Twins_YN == 1:
+        roles.extend(["Twins"] * 2)
+    for count, role_list in Special_Roles.items():
+        if player_num >= count:
+            roles.extend(role_list)
+    while len(roles) < player_num:
+        roles.append("Innocent")
+    random.shuffle(roles)
+    player_roles = dict(zip(players, roles))
 
 
 def GmSheet():
